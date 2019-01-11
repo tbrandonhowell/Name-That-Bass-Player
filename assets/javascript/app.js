@@ -7,47 +7,47 @@
 var questionArray = [
 
 {
-    question: "How many pickups does the Fender Stu Hamm Urge Bass Have?",
-    rightAnswer: "3",
+    question: "",
+    rightAnswer: "Sting",
     allAnswers: [
-        1,
-        2,
-        3,
-        4
+        "Sting",
+        "Bass Player 1",
+        "Bass Player 2",
+        "Bass Player 3",
     ],
     answerStatus: "unanswered",
-    image: "assets/images/urge_bass.jpg",
-    smallImage: "https://picsum.photos/200/300",
+    image: "https://www.telegraph.co.uk/content/dam/music/2017/04/08/stinggrey_trans_NvBQzQNjv4Bqa8QtIqCyJclA1G3zY-Z46i2bz5imSv8JSOjCB29-Fi8.jpg?imwidth=450",
+    smallImage: "https://www.telegraph.co.uk/content/dam/music/2017/04/08/stinggrey_trans_NvBQzQNjv4Bqa8QtIqCyJclA1G3zY-Z46i2bz5imSv8JSOjCB29-Fi8.jpg?imwidth=450",
     audioFile: "",
 },
 
 {
-    question: "In what year did the Fender Precision Bass debut?",
-    rightAnswer: "1951",
+    question: "",
+    rightAnswer: "Phil Lynott",
     allAnswers: [
-        "1951",
-        "1947",
-        "1962",
-        "1957"
+        "Phil Lynott",
+        "Bass Player 1",
+        "Bass Player 2",
+        "Bass Player 3",
     ],
     answerStatus: "unanswered",
-    image: "assets/images/precision_bass.jpg",
-    smallImage: "https://picsum.photos/200/300",
+    image: "https://www.irishtimes.com/polopoly_fs/1.2538498.1455731916!/image/image.jpg_gen/derivatives/box_620_330/image.jpg",
+    smallImage: "https://www.irishtimes.com/polopoly_fs/1.2538498.1455731916!/image/image.jpg_gen/derivatives/box_620_330/image.jpg",
     audioFile: "",
 },
 
 {
-    question: "Why did Leo Fender name his first bass the 'Precision' Bass?",
-    rightAnswer: "The frets allowed for more precise fingering of notes.",
+    question: "",
+    rightAnswer: "Flea",
     allAnswers: [
-        "The frets allowed for more precise fingering of notes.",
-        "Fender's advanced production methods were more precise.",
-        "The newly introduced tuner design allowed for better tuning precision.",
-        "Fender was competing against the Gibson 'Accu Bass'.",
+        "Flea",
+        "Bass Player 1",
+        "Bass Player 2",
+        "Bass Player 3",
     ],
     answerStatus: "unanswered",
-    image: "assets/images/precision_fretboard.jpg",
-    smallImage: "https://picsum.photos/200/300",
+    image: "https://akns-images.eonline.com/eol_images/Entire_Site/201414/rs_560x415-140204165213-1024.flea-rhcp-super-bowl-020414.jpg?fit=inside|900:auto&output-quality=90",
+    smallImage: "https://akns-images.eonline.com/eol_images/Entire_Site/201414/rs_560x415-140204165213-1024.flea-rhcp-super-bowl-020414.jpg?fit=inside|900:auto&output-quality=90",
     audioFile: "",
 },
 
@@ -62,6 +62,13 @@ console.log(questionArray[2].wrongAnswer1);
 
 var questIndex; // will increment this after each question
 var shuffledQuestions = []; // will be updated with each question to hold its shuffled answers
+var finalCorrect = 0; // tally for each game
+var finalWrong = 0; // tally for each game
+var finalUnanswered = 0; // tally for each game
+var printTimer; // realtime timer variable for use during each answer. gets reset with writeScreen()
+var defaultQuesTime = 10; // default time (in seconds) for questions
+var answerTime = 5000; // how long (in milliseconds) we want to show the answer before moving to next question
+var realtimeInterval; // holds the setInterval for use in each question
 
 // ------------------------------------------------
 // randomizing functions
@@ -99,7 +106,7 @@ var shuffle = function (array) {
 };
 
 // ------------------------------------------------
-// other functions
+// writeScreen function
 // ------------------------------------------------
 
 // Write everything for this question to the screen
@@ -107,21 +114,20 @@ var shuffle = function (array) {
 
 var writeScreen = function () {
 
-    // write the question
-    var newP = $("<p>"); // create <p>
-    newP.text(shuffledQuestions[questIndex].question);// drop question into <p>
-    $("#questionDiv").html(newP);// drop <p> into #questionDiv
+    console.log("writeScreen questIndex = " + questIndex);
+    console.log(shuffledQuestions);
 
     // write the small image
-    // TODO: need to pull in the smaller image for the guess
+    $(".smallImg").attr("src", shuffledQuestions[questIndex].smallImage);
 
     // write the answers
-    // TODO: needs to have its data values added for the game logic
-    // TODO: also need to add a class that we can look for with an onclick
+    $("#answersDiv").empty(); // clear the answersDiv first
     var liveAns = shuffle(shuffledQuestions[questIndex].allAnswers); // shuffle the answers to this question
     for (i=0;i<liveAns.length;i++) {
         var newP = $("<p>"); // create <p>
         newP.text(liveAns[i]);// drop question into <p>
+        newP.addClass("answer"); // add the answer class so we can watch for the button click
+        newP.attr("data-value",liveAns[i]); // add data value for answer check logic
         $("#answersDiv").append(newP);// drop <p> into #answersDiv
     }
 
@@ -129,48 +135,211 @@ var writeScreen = function () {
     $(".correctAns").text(shuffledQuestions[questIndex].rightAnswer); // push the correct answer to the div
     $(".largeImg").attr("src", shuffledQuestions[questIndex].image);// push the larger picture to the div
 
+    // show question and answers divs
+    $("#answersDiv").attr("style", "display:block"); 
+    $("#questionDiv").attr("style", "display:block"); 
+
+    // hide wrongDiv, rightDiv, timeoutDiv, stats
+    $("#wrongDiv").attr("style", "display:none");
+    $("#rightDiv").attr("style", "display:none");
+    $("#timeoutDiv").attr("style", "display:none");
+    $("#stats").attr("style", "display:none");
+
+    // reset and start our internal/timer
+    printTimer = defaultQuesTime; // reset printTimer variable to default
+    $("#printTimer").text(printTimer); // write printTimer to screen
+    realtimeInterval = setInterval(countDown,1000); // fire off the countdown function every second
+
+}
+
+// ------------------------------------------------
+// showTimeout function - is called by countDown if printTimer === 0
+// ------------------------------------------------
+
+var showTimeout = function() {
+        console.log("answer timeout");
+        questIndex++; // increment questIndex
+        finalUnanswered++; // increment unanswered counter
+        $("#answersDiv").attr("style", "display:none"); // hide answers and question div
+        $("#questionDiv").attr("style", "display:none"); // hide answers and question div
+        $("#timeoutDiv").attr("style", "display:block"); // show timeoutDiv
+        // create timeout until the jump to the next question:
+        setTimeout(gameOverYet,answerTime);
 }
 
 
 
 
 // ------------------------------------------------
-// intiate game when user presses start
+// countDown function for interval
 // ------------------------------------------------
 
-// watch for the start button click event
-$("#startDiv").on("click", "#startButton", function() { // watch for the click
+var countDown = function() {
+    printTimer--; // decrement printTimer
+    $("#printTimer").text(printTimer); // write printTimer to screen
+    if (printTimer === 0) {
+        clearInterval(realtimeInterval);
+        showTimeout(); 
+    }
+}
+
+
+// ------------------------------------------------
+// function "start" for starting (and restarting) the game
+// ------------------------------------------------
+
+
+var start = function() {
 
     console.log("start click captured");
 
-    questIndex = 1; // set to first question
+    // set timer to sta
+
+    // reset the right/wrong/unanswered counters
+    finalCorrect = 0;
+    finalWrong = 0;
+    finalUnanswered = 0;
+
+    questIndex = 0; // set to first question
     console.log(questIndex);
 
     // Update the shuffledQuestions array with the question's answers (and shuffle them, obviously)
     shuffledQuestions = shuffle(questionArray.slice()); // also pulled from https://gomakethings.com/how-to-shuffle-an-array-with-vanilla-js/
     console.log(shuffledQuestions);
 
-    // send everything to the DOM
+    // Hide the start button
+    $("#startDiv").attr("style", "display:none");
+
+    // show time div
+    $("#timeDiv").attr("style", "display:block");
+
+    // send everything for the question to the DOM
     writeScreen();
 
-    // Write the first question to the screen
-    // <p class="question">Question goes here.</p>
-    // <p class="answer" value="1">Answer 1</p>
+};
+
+// ------------------------------------------------
+// function to decide if game is over (used in the timeout)
+// ------------------------------------------------
+
+var gameOverYet = function() {
+    if (questIndex == shuffledQuestions.length) { // this comparison works because we increment questIndex after every answer, so for example, after answering the third question, the questIndex value is 3 (for the 4th, non-existent entry in the array)
+        end();
+    } else {
+        writeScreen();
+    }
+}   
+
+// ------------------------------------------------
+// function "end" for showing final screen w/ scores
+// ------------------------------------------------
+
+var end = function() {
+
+    console.log("end function");
+
+    // hide question and answers divs
+    $("#answersDiv").attr("style", "display:none"); 
+    $("#questionDiv").attr("style", "display:none"); 
+
+    // hide wrongDiv, rightDiv, timeoutDiv
+    $("#wrongDiv").attr("style", "display:none");
+    $("#rightDiv").attr("style", "display:none");
+    $("#timeoutDiv").attr("style", "display:none");
+    $("#timeDiv").attr("style", "display:none");
+
+    // load up the stats div
+
+    $("#finalCorrect").text(finalCorrect);
+    $("#finalWrong").text(finalWrong);
+    $("#finalUnanswered").text(finalUnanswered);
+
+    // display stats div
+    $("#stats").attr("style", "display:block");
+
+    // 
+
+};
 
 
+// ------------------------------------------------
+// call "start" when a .startButton is pressed
+// ------------------------------------------------
+
+
+// watch for the start button click event
+$(document).on("click", ".startButton", function() { // watch for the click from start or restart
+
+    start();
 
 });
 
 
 
-
-// NEED TO CREATE THE CODE TO CREATE THE DIV WITH THE ANSWERS
-
-
-// Watch for the answer click
+// ------------------------------------------------
+// Watch for the answer click and execute logic
+// ------------------------------------------------
 
 $(document).on("click", ".answer", function() { // watch for the click
 
-    console.log($(this).attr("value"));
+
+    
+
+    // increment our question:
+    
+    console.log("questIndex = " + questIndex);
+    console.log(shuffledQuestions[questIndex].rightAnswer);
+
+    // capture the answer for this function
+    var tempAns = $(this).attr("data-value");
+    console.log(tempAns);
+
+    $("#answersDiv").attr("style", "display:none"); // hide answers and question div
+    $("#questionDiv").attr("style", "display:none"); // hide answers and question div
+
+    // if tempAns = right answer, then do this
+    if (tempAns == shuffledQuestions[questIndex].rightAnswer) {
+        console.log("right answer!");
+        finalCorrect++;
+        $("#rightDiv").attr("style", "display:block"); // show hidden #rightDiv
+    // else if tempAns = wrong answer, then do this
+    } else {
+        console.log("wrong answer");
+        finalWrong++;
+        $("#wrongDiv").attr("style", "display:block"); // show hidden #wrongDiv
+    }
+
+    questIndex++; // otherwise increment the question index
+
+    clearInterval(realtimeInterval); // stop the timer
+
+    // create timeout until the jump to the next question
+    setTimeout(gameOverYet,answerTime);
+
+    // TODO: need a timer that gives you five seconds and then moves to the next question
+    // taken from https://medium.freecodecamp.org/javascript-timers-everything-you-need-to-know-5f31eaa37162
+    // setTimeout(
+    //     () => {
+    //       writeScreen();
+    //     },
+    //     1 * 1000
+    //   );
+
+
+
+
 
 });
+
+
+// ------------------------------------------------
+// temp button to go to next question
+// ------------------------------------------------
+
+// $(document).on("click", "#next", function() { // watch for the click
+//     if (questIndex == shuffledQuestions.length) { // this comparison works because we increment questIndex after every answer, so for example, after answering the third question, the questIndex value is 3 (for the 4th, non-existent entry in the array)
+//         end();
+//     } else {
+//         writeScreen();
+//     }
+// });

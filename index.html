@@ -2,6 +2,8 @@
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
     <body>
@@ -9,40 +11,45 @@
         <h1>Name That Bass Player</h1>
 
         <div id="startDiv">
-            <button type="button" id="startButton">Start</button>
+            <button type="button" class="startButton">Start</button>
         </div>
 
-        <div id="timeDiv">
-            Time Remaining: XX Seconds
+        <div id="timeDiv" style="display:none">
+            <p>Time Remaining: <span id="printTimer"></span> Seconds</p>
         </div>
 
         <div id="questionDiv">
-
+            <img class="smallImg" src="">
         </div>
 
         <div id="answersDiv">
 
         </div>
 
-        <div id="wrongDiv">
+        <div id="wrongDiv" style="display:none">
             <p>Nope!</p>
             <p>The correct answer was: <span class="correctAns"></span></p>
             <img class="largeImg" src="">
         </div>
 
-        <div id="rightDiv">
+        <div id="rightDiv" style="display:none">
             <p>Correct!</p>
             <img class="largeImg" src="">
         </div>
 
-        <div id="timeoutDiv">
+        <div id="timeoutDiv" style="display:none">
             <p>Out of Time!</p>
             <p>The correct answer was: <span class="correctAns"></span></p>
             <img class="largeImg" src="">
         </div>
 
-        
-
+        <div id="stats" style="display:none">
+            <p>All done, here's how you did!</p>
+            <p>Correct Answers: <span id="finalCorrect"></span></p>
+            <p>Incorrect Answers: <span id="finalWrong"></span></p>
+            <p>Unanswered: <span id="finalUnanswered"></span></p>
+            <button type="button" class="startButton">Start Over?</button>
+        </div>
 
         <script src="assets/javascript/app.js"></script>
     </body>
