@@ -17,6 +17,7 @@ var questionArray = [
     ],
     image: "https://www.telegraph.co.uk/content/dam/music/2017/04/08/stinggrey_trans_NvBQzQNjv4Bqa8QtIqCyJclA1G3zY-Z46i2bz5imSv8JSOjCB29-Fi8.jpg?imwidth=450",
     audioFile: "",
+    band: "The Police",
 },
 
 {
@@ -30,6 +31,7 @@ var questionArray = [
     ],
     image: "https://www.irishtimes.com/polopoly_fs/1.2538498.1455731916!/image/image.jpg_gen/derivatives/box_620_330/image.jpg",
     audioFile: "",
+    band: "Thin Lizzy",
 },
 
 {
@@ -43,6 +45,7 @@ var questionArray = [
     ],
     image: "https://akns-images.eonline.com/eol_images/Entire_Site/201414/rs_560x415-140204165213-1024.flea-rhcp-super-bowl-020414.jpg?fit=inside|900:auto&output-quality=90",
     audioFile: "",
+    band: "Red Hot Chili Peppers"
 },
 
 ]; // close questionArray
@@ -118,9 +121,10 @@ var writeScreen = function () {
     $("#answersDiv").empty(); // clear the answersDiv first
     var liveAns = shuffle(shuffledQuestions[questIndex].allAnswers); // shuffle the answers to this question
     for (i=0;i<liveAns.length;i++) {
-        var newP = $("<p>"); // create <p>
+        var newP = $("<button>"); // create <p>
         newP.text(liveAns[i]);// drop question into <p>
-        newP.addClass("answer"); // add the answer class so we can watch for the button click
+        newP.addClass("answer btn btn-lg btn-block btn-dark"); // add the answer class so we can watch for the button click
+        newP.attr("type","button");
         newP.attr("data-value",liveAns[i]); // add data value for answer check logic
         $("#answersDiv").append(newP);// drop <p> into #answersDiv
     }
@@ -128,6 +132,7 @@ var writeScreen = function () {
     // write the stuff for the wrong/right/timeout messages
     $(".correctAns").text(shuffledQuestions[questIndex].rightAnswer); // push the correct answer to the div
     $(".playerImg").attr("src", shuffledQuestions[questIndex].image);// push the larger picture to the div
+    $(".bandName").text(shuffledQuestions[questIndex].band); // push the band name to the divs
 
     // show question and answers divs
     $("#answersDiv").attr("style", "display:block"); 

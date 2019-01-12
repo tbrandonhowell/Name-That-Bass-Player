@@ -43,14 +43,7 @@ h1 {
     font-size: 60px;
 }
 
-#leftSide {
-    float:left;
-    width: 48%; 
-    background-color: red;
-}
-
-#rightSide {
-    float:right;
-    width: 48%;
-    background-color: green;
-}
+/* .answer {
+    margin-bottom: 4%;
+    height: 22%;
+} */
