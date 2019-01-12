@@ -15,9 +15,7 @@ var questionArray = [
         "Bass Player 2",
         "Bass Player 3",
     ],
-    answerStatus: "unanswered",
     image: "https://www.telegraph.co.uk/content/dam/music/2017/04/08/stinggrey_trans_NvBQzQNjv4Bqa8QtIqCyJclA1G3zY-Z46i2bz5imSv8JSOjCB29-Fi8.jpg?imwidth=450",
-    smallImage: "https://www.telegraph.co.uk/content/dam/music/2017/04/08/stinggrey_trans_NvBQzQNjv4Bqa8QtIqCyJclA1G3zY-Z46i2bz5imSv8JSOjCB29-Fi8.jpg?imwidth=450",
     audioFile: "",
 },
 
@@ -30,9 +28,7 @@ var questionArray = [
         "Bass Player 2",
         "Bass Player 3",
     ],
-    answerStatus: "unanswered",
     image: "https://www.irishtimes.com/polopoly_fs/1.2538498.1455731916!/image/image.jpg_gen/derivatives/box_620_330/image.jpg",
-    smallImage: "https://www.irishtimes.com/polopoly_fs/1.2538498.1455731916!/image/image.jpg_gen/derivatives/box_620_330/image.jpg",
     audioFile: "",
 },
 
@@ -45,9 +41,7 @@ var questionArray = [
         "Bass Player 2",
         "Bass Player 3",
     ],
-    answerStatus: "unanswered",
     image: "https://akns-images.eonline.com/eol_images/Entire_Site/201414/rs_560x415-140204165213-1024.flea-rhcp-super-bowl-020414.jpg?fit=inside|900:auto&output-quality=90",
-    smallImage: "https://akns-images.eonline.com/eol_images/Entire_Site/201414/rs_560x415-140204165213-1024.flea-rhcp-super-bowl-020414.jpg?fit=inside|900:auto&output-quality=90",
     audioFile: "",
 },
 
@@ -117,8 +111,8 @@ var writeScreen = function () {
     console.log("writeScreen questIndex = " + questIndex);
     console.log(shuffledQuestions);
 
-    // write the small image
-    $(".smallImg").attr("src", shuffledQuestions[questIndex].smallImage);
+    // write the bass player image
+    $(".playerImg").attr("src", shuffledQuestions[questIndex].Image);
 
     // write the answers
     $("#answersDiv").empty(); // clear the answersDiv first
@@ -133,7 +127,7 @@ var writeScreen = function () {
 
     // write the stuff for the wrong/right/timeout messages
     $(".correctAns").text(shuffledQuestions[questIndex].rightAnswer); // push the correct answer to the div
-    $(".largeImg").attr("src", shuffledQuestions[questIndex].image);// push the larger picture to the div
+    $(".playerImg").attr("src", shuffledQuestions[questIndex].image);// push the larger picture to the div
 
     // show question and answers divs
     $("#answersDiv").attr("style", "display:block"); 
@@ -147,7 +141,7 @@ var writeScreen = function () {
 
     // reset and start our internal/timer
     printTimer = defaultQuesTime; // reset printTimer variable to default
-    $("#printTimer").text(printTimer); // write printTimer to screen
+    $(".printTimer").text(printTimer); // write printTimer to screen
     realtimeInterval = setInterval(countDown,1000); // fire off the countdown function every second
 
 }
@@ -160,8 +154,8 @@ var showTimeout = function() {
         console.log("answer timeout");
         questIndex++; // increment questIndex
         finalUnanswered++; // increment unanswered counter
-        $("#answersDiv").attr("style", "display:none"); // hide answers and question div
-        $("#questionDiv").attr("style", "display:none"); // hide answers and question div
+        $("#answersDiv").attr("style", "display:none"); // hide answers div
+        $("#questionDiv").attr("style", "display:block"); // keep questions div up
         $("#timeoutDiv").attr("style", "display:block"); // show timeoutDiv
         // create timeout until the jump to the next question:
         setTimeout(gameOverYet,answerTime);
@@ -176,7 +170,7 @@ var showTimeout = function() {
 
 var countDown = function() {
     printTimer--; // decrement printTimer
-    $("#printTimer").text(printTimer); // write printTimer to screen
+    $(".printTimer").text(printTimer); // write printTimer to screen
     if (printTimer === 0) {
         clearInterval(realtimeInterval);
         showTimeout(); 
@@ -211,7 +205,7 @@ var start = function() {
     $("#startDiv").attr("style", "display:none");
 
     // show time div
-    $("#timeDiv").attr("style", "display:block");
+    $(".timeDiv").attr("style", "display:block");
 
     // send everything for the question to the DOM
     writeScreen();
@@ -246,7 +240,7 @@ var end = function() {
     $("#wrongDiv").attr("style", "display:none");
     $("#rightDiv").attr("style", "display:none");
     $("#timeoutDiv").attr("style", "display:none");
-    $("#timeDiv").attr("style", "display:none");
+    $(".timeDiv").attr("style", "display:none");
 
     // load up the stats div
 
@@ -294,8 +288,8 @@ $(document).on("click", ".answer", function() { // watch for the click
     var tempAns = $(this).attr("data-value");
     console.log(tempAns);
 
-    $("#answersDiv").attr("style", "display:none"); // hide answers and question div
-    $("#questionDiv").attr("style", "display:none"); // hide answers and question div
+    $("#answersDiv").attr("style", "display:none"); // hide answers div
+    $("#questionDiv").attr("style", "display:block"); // keep questions div up
 
     // if tempAns = right answer, then do this
     if (tempAns == shuffledQuestions[questIndex].rightAnswer) {
