@@ -1,7 +1,7 @@
 /* full size background CSS, courtesy https://css-tricks.com/perfect-full-page-background-image/ */
 /* background image from https://wallpapertag.com/wallpaper/full/d/5/a/98053-archer-wallpaper-3593x2048-screen.jpg */
 body { 
-    background: url(../images/bg.jpeg) no-repeat top center fixed; 
+    background: url("../images/bg.jpeg") no-repeat top center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -22,7 +22,7 @@ h1 {
 }
 
 .game {
-    height: 75vh;
+    min-height: 75vh;
     border: solid 1px #ffffff;
     background-color:rgb(255, 255, 255, 0.6);
 }
@@ -46,4 +46,13 @@ h1 {
 /* .answer {
     margin-bottom: 4%;
     height: 22%;
+} */
+
+/* #questionDiv {
+    background: url("https://i.pinimg.com/originals/17/3b/f2/173bf269482d264440720a6036bf319e.jpg") no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
 } */

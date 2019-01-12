@@ -6,18 +6,48 @@
 
 var questionArray = [
 
+
+
 {
     question: "",
     rightAnswer: "Sting",
     allAnswers: [
         "Sting",
-        "Bass Player 1",
-        "Bass Player 2",
-        "Bass Player 3",
+        "Flea",
+        "Punch",
+        "Thundercat",
     ],
-    image: "https://www.telegraph.co.uk/content/dam/music/2017/04/08/stinggrey_trans_NvBQzQNjv4Bqa8QtIqCyJclA1G3zY-Z46i2bz5imSv8JSOjCB29-Fi8.jpg?imwidth=450",
-    audioFile: "",
+    image: "http://www.mixdownmag.com.au/sites/default/files/images/spector%20ns-2.jpg",
+    audioFile: "assets/sound/police.mp3",
     band: "The Police",
+},
+
+{
+    question: "",
+    rightAnswer: "James Jamerson",
+    allAnswers: [
+        "James Jamerson",
+        "Robert Trujillo",
+        "Bob Babbit",
+        "Bob Bogle",
+    ],
+    image: "https://i.pinimg.com/originals/fa/ad/e3/faade3f5fc002b53746fadf068175dad.jpg",
+    audioFile: "",
+    band: "Funk Brothers",
+},
+
+{
+    question: "",
+    rightAnswer: "Paul McCartney",
+    allAnswers: [
+        "Paul McCartney",
+        "Victor Wooten",
+        "Doug Wimbish",
+        "Colin Greenwood",
+    ],
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Paul_McCartney_black_and_white_2010.jpg/1200px-Paul_McCartney_black_and_white_2010.jpg",
+    audioFile: "",
+    band: "The Beatles",
 },
 
 {
@@ -25,13 +55,111 @@ var questionArray = [
     rightAnswer: "Phil Lynott",
     allAnswers: [
         "Phil Lynott",
-        "Bass Player 1",
-        "Bass Player 2",
-        "Bass Player 3",
+        "Victor Bailey",
+        "Michael Manring",
+        "Michael Shuman",
     ],
-    image: "https://www.irishtimes.com/polopoly_fs/1.2538498.1455731916!/image/image.jpg_gen/derivatives/box_620_330/image.jpg",
-    audioFile: "",
+    image: "https://i2-prod.mirror.co.uk/incoming/article7495431.ece/ALTERNATES/s615b/Phil-Lynott-of-Thin-Lizzie-singing-on-stage.jpg",
+    audioFile: "assets/sound/thin_lizzy.mp3",
     band: "Thin Lizzy",
+},
+
+{
+    question: "",
+    rightAnswer: "Bootsy Collins",
+    allAnswers: [
+        "Bootsy Collins",
+        "Chris Squire",
+        "Dee Murray",
+        "Michael Ivins",
+    ],
+    image: "https://i.pinimg.com/originals/69/b1/87/69b187a6fe9c940931bf86c3b102ec99.jpg",
+    audioFile: "",
+    band: "Parliament-Funkadelic",
+},
+
+{
+    question: "",
+    rightAnswer: "John Paul Jones",
+    allAnswers: [
+        "John Paul Jones",
+        "Jack Bruce",
+        "Jonas Hellborg",
+        "Nick Oliveri",
+    ],
+    image: "http://www.mixdownmag.com.au/sites/default/files/images/jpjjazzbass.jpg",
+    audioFile: "",
+    band: "Led Zeppelin",
+},
+
+{
+    question: "",
+    rightAnswer: "Lemmy Kilmister",
+    allAnswers: [
+        "Lemmy Kilmister",
+        "Geezer Butler",
+        "Bill Black",
+        "Roger Waters",
+    ],
+    image: "https://i.pinimg.com/originals/f2/6a/1a/f26a1ad6b6a9e0d97cb84514adabbcb5.jpg",
+    audioFile: "",
+    band: "Motorhead",
+},
+
+{
+    question: "",
+    rightAnswer: "Steve Harris",
+    allAnswers: [
+        "Steve Harris",
+        "John Deacon",
+        "Bobby Vega",
+        "Armistead Burwell Smith IV",
+    ],
+    image: "https://i.pinimg.com/originals/79/0e/a4/790ea450f521445267859b5f96847cc8.jpg",
+    audioFile: "",
+    band: "Iron Maiden",
+},
+
+{
+    question: "",
+    rightAnswer: "Peter Hook",
+    allAnswers: [
+        "Peter Hook",
+        "Donald Dunn",
+        "Jeff Berlin",
+        "Troy Sanders",
+    ],
+    image: "https://ssl.c.photoshelter.com/img-get2/I0000CkC7sTCZRbc/fit=1000x750/Peter-Hook-of-New-Order-performing-in-Bsoton.jpg",
+    audioFile: "assets/sound/joy_division.mp3",
+    band: "Joy Division & New Order",
+},
+
+{
+    question: "",
+    rightAnswer: "Cliff Burton",
+    allAnswers: [
+        "Cliff Burton",
+        "Billy Sheehan",
+        "Berry Oakley",
+        "Mick Karn",
+    ],
+    image: "https://static1.squarespace.com/static/54481c8fe4b0a9431d5d27fe/t/550206efe4b0e7855b512923/1426196207997/",
+    audioFile: "",
+    band: "Metallica",
+},
+
+{
+    question: "",
+    rightAnswer: "Geddy Lee",
+    allAnswers: [
+        "Geddy Lee",
+        "Tony Levin",
+        "Les Claypool",
+        "Joe Osborn",
+    ],
+    image: "https://i0.wp.com/www.notreble.com/wp-content/uploads/2018/12/Geddy-Lee.jpg?resize=1280%2C960&ssl=1",
+    audioFile: "",
+    band: "Rush",
 },
 
 {
@@ -39,13 +167,125 @@ var questionArray = [
     rightAnswer: "Flea",
     allAnswers: [
         "Flea",
-        "Bass Player 1",
-        "Bass Player 2",
-        "Bass Player 3",
+        "Lice",
+        "Tick",
+        "Ant",
     ],
-    image: "https://akns-images.eonline.com/eol_images/Entire_Site/201414/rs_560x415-140204165213-1024.flea-rhcp-super-bowl-020414.jpg?fit=inside|900:auto&output-quality=90",
-    audioFile: "",
+    image: "https://s3.amazonaws.com/images.charitybuzz.com/images/3597/original.jpg?1384538220",
+    audioFile: "assets/sound/rhcp.mp3",
     band: "Red Hot Chili Peppers"
+},
+
+{
+    question: "",
+    rightAnswer: "Jaco Pastorius",
+    allAnswers: [
+        "Jaco Pastorius",
+        "Bernand Edwards",
+        "Verdine White",
+        "Robert DeLeo",
+    ],
+    image: "https://i.pinimg.com/originals/d1/39/6d/d1396d2d8a287653804c67b3231abe4c.jpg",
+    audioFile: "",
+    band: "Weather Report, Etc.",
+},
+
+{
+    question: "",
+    rightAnswer: "Krist Novoselic",
+    allAnswers: [
+        "Krist Novoselic",
+        "Pino Palladino",
+        "Will Lee",
+        "Brian Ritchie",
+    ],
+    image: "https://i.pinimg.com/originals/cb/0c/7c/cb0c7c2e2ab04840a7e15a9502313706.jpg",
+    audioFile: "",
+    band: "Nirvana",
+},
+
+{
+    question: "",
+    rightAnswer: "Larry Graham",
+    allAnswers: [
+        "Larry Graham",
+        "Stu Hamm",
+        "Jack Cassidy",
+        "Robert Been",
+    ],
+    image: "http://apps.startribune.com/blogs/user_images/jonbream_1453336055_gcs.jpg",
+    audioFile: "",
+    band: "Sly and the Family Stone",
+},
+
+{
+    question: "",
+    rightAnswer: "John Entwistle",
+    allAnswers: [
+        "John Entwistle",
+        "Nathan East",
+        "John Patitucci",
+        "Timothy Schmit",
+    ],
+    image: "https://i.pinimg.com/originals/65/67/5d/65675d4d9a2ecd814e0a2d692df4d95d.jpg",
+    audioFile: "",
+    band: "The Who",
+},
+
+{
+    question: "",
+    rightAnswer: "Stanley Clarke",
+    allAnswers: [
+        "Stanley Clarke",
+        "Louis Johnson",
+        "Rocco Prestia",
+        "Howie Epstein",
+    ],
+    image: "https://media.gettyimages.com/photos/stanley-clarke-performs-with-the-new-barbarians-at-oakland-coliseum-picture-id98699584?b=1&k=6&m=98699584&s=612x612&w=0&h=Gou-TdLJjvTKZRmrvq9dpJ88NQKkEKo1pksaDyXZrzI=",
+    audioFile: "",
+    band: "Solo",
+},
+
+{
+    question: "",
+    rightAnswer: "Leland Sklar",
+    allAnswers: [
+        "Leland Sklar",
+        "Mike Watt",
+        "Chuck Rainey",
+        "Michael Anthony",
+    ],
+    image: "http://static1.squarespace.com/static/591b2c925016e1568ef59428/591bc36437c581f0802c3f93/5924cf4a414fb5f591f1ccdf/1537775848124/leland-sklar.jpg?format=1500w",
+    audioFile: "",
+    band: "Session Musician",
+},
+
+{
+    question: "",
+    rightAnswer: "Justin Chancellor",
+    allAnswers: [
+        "Justin Chancellor",
+        "Duff McKagan",
+        "Phil Lesh",
+        "Marcus Miller",
+    ],
+    image: "https://www.bassplayer.com/.image/t_share/MTUzNjY4MzAwNDk3MzY0NzIx/image-placeholder-title.jpg",
+    audioFile: "",
+    band: "Tool",
+},
+
+{
+    question: "",
+    rightAnswer: "Brandon Howell",
+    allAnswers: [
+        "Brandon Howell",
+        "Chris Wolstenholme",
+        "Anthony Jackson",
+        "Carlos Dengler",
+    ],
+    image: "assets/images/howell.jpg",
+    audioFile: "",
+    band: "Looking for a band. You need a bass player?",
 },
 
 ]; // close questionArray
@@ -64,8 +304,9 @@ var finalWrong = 0; // tally for each game
 var finalUnanswered = 0; // tally for each game
 var printTimer; // realtime timer variable for use during each answer. gets reset with writeScreen()
 var defaultQuesTime = 10; // default time (in seconds) for questions
-var answerTime = 5000; // how long (in milliseconds) we want to show the answer before moving to next question
+var answerTime = 1000; // how long (in milliseconds) we want to show the answer before moving to next question
 var realtimeInterval; // holds the setInterval for use in each question
+var audio; // holder for our mp3 clues
 
 // ------------------------------------------------
 // randomizing functions
@@ -129,6 +370,16 @@ var writeScreen = function () {
         $("#answersDiv").append(newP);// drop <p> into #answersDiv
     }
 
+    // write the hint
+    var newHint = $("<button>");
+        newHint.text("I need a hint!");
+        newHint.addClass("hint btn btn-lg btn-block btn-success");
+        $("#answersDiv").append(newHint);
+
+    // select the audio file to play
+    console.log(shuffledQuestions[questIndex].audioFile);
+    audio = new Audio(shuffledQuestions[questIndex].audioFile);
+
     // write the stuff for the wrong/right/timeout messages
     $(".correctAns").text(shuffledQuestions[questIndex].rightAnswer); // push the correct answer to the div
     $(".playerImg").attr("src", shuffledQuestions[questIndex].image);// push the larger picture to the div
@@ -162,6 +413,7 @@ var showTimeout = function() {
         $("#answersDiv").attr("style", "display:none"); // hide answers div
         $("#questionDiv").attr("style", "display:block"); // keep questions div up
         $("#timeoutDiv").attr("style", "display:block"); // show timeoutDiv
+        audio.pause(); // pause the audio if it had been started
         // create timeout until the jump to the next question:
         setTimeout(gameOverYet,answerTime);
 }
@@ -315,30 +567,19 @@ $(document).on("click", ".answer", function() { // watch for the click
     // create timeout until the jump to the next question
     setTimeout(gameOverYet,answerTime);
 
-    // TODO: need a timer that gives you five seconds and then moves to the next question
-    // taken from https://medium.freecodecamp.org/javascript-timers-everything-you-need-to-know-5f31eaa37162
-    // setTimeout(
-    //     () => {
-    //       writeScreen();
-    //     },
-    //     1 * 1000
-    //   );
-
-
-
-
+    // pause the audio if it had been started
+    audio.pause();
 
 });
 
 
 // ------------------------------------------------
-// temp button to go to next question
+// watch for the hint click
 // ------------------------------------------------
 
-// $(document).on("click", "#next", function() { // watch for the click
-//     if (questIndex == shuffledQuestions.length) { // this comparison works because we increment questIndex after every answer, so for example, after answering the third question, the questIndex value is 3 (for the 4th, non-existent entry in the array)
-//         end();
-//     } else {
-//         writeScreen();
-//     }
-// });
+$(document).on("click", ".hint", function() { // watch for the click
+    console.log("hint click");
+    audio.play();
+
+});
+
