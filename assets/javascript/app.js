@@ -306,7 +306,9 @@ var printTimer; // realtime timer variable for use during each answer. gets rese
 var defaultQuesTime = 30; // default time (in seconds) for questions
 var answerTime = 5000; // how long (in milliseconds) we want to show the answer before moving to next question
 var realtimeInterval; // holds the setInterval for use in each question
-var audio; // holder for our mp3 clues
+var audio = new Audio("assets/sound/silence.mp3"); // holder for our mp3 clues
+// ^^ going ahead and setting this to silence so writeScreen() has something to bind to.
+var oldAudio;
 
 // ------------------------------------------------
 // randomizing functions
@@ -352,6 +354,30 @@ var shuffle = function (array) {
 
 var writeScreen = function () {
 
+    oldAudio = audio; // drop our audio into a different variable so we can control it after the new question's audio file is bound to the audio variable
+    
+    // faux fade-out sequence. could probably have been done with an interval if I had more time to mess with it
+    setTimeout(function(){oldAudio.volume = 0.95;console.log("volume dropped");},100);
+    setTimeout(function(){oldAudio.volume = 0.9;console.log("volume dropped");},200);
+    setTimeout(function(){oldAudio.volume = 0.85;console.log("volume dropped");},300);
+    setTimeout(function(){oldAudio.volume = 0.8;console.log("volume dropped");},400);
+    setTimeout(function(){oldAudio.volume = 0.75;console.log("volume dropped");},500);
+    setTimeout(function(){oldAudio.volume = 0.7;console.log("volume dropped");},600);
+    setTimeout(function(){oldAudio.volume = 0.65;console.log("volume dropped");},700);
+    setTimeout(function(){oldAudio.volume = 0.6;console.log("volume dropped");},800);
+    setTimeout(function(){oldAudio.volume = 0.55;console.log("volume dropped");},900);
+    setTimeout(function(){oldAudio.volume = 0.5;console.log("volume dropped");},1000);
+    setTimeout(function(){oldAudio.volume = 0.45;console.log("volume dropped");},1100);
+    setTimeout(function(){oldAudio.volume = 0.4;console.log("volume dropped");},1200);
+    setTimeout(function(){oldAudio.volume = 0.35;console.log("volume dropped");},1300);
+    setTimeout(function(){oldAudio.volume = 0.3;console.log("volume dropped");},1400);
+    setTimeout(function(){oldAudio.volume = 0.25;console.log("volume dropped");},1500);
+    setTimeout(function(){oldAudio.volume = 0.2;console.log("volume dropped");},1600);
+    setTimeout(function(){oldAudio.volume = 0.15;console.log("volume dropped");},1700);
+    setTimeout(function(){oldAudio.volume = 0.1;console.log("volume dropped");},1800);
+    setTimeout(function(){oldAudio.volume = 0.05;console.log("volume dropped");},1900);
+    setTimeout(function(){oldAudio.pause();console.log("paused");},2000);
+
     console.log("writeScreen questIndex = " + questIndex);
     console.log(shuffledQuestions);
 
@@ -379,7 +405,8 @@ var writeScreen = function () {
     // select the audio file to play
     console.log(shuffledQuestions[questIndex].audioFile);
     audio = new Audio(shuffledQuestions[questIndex].audioFile);
-
+    document.body.appendChild(audio);
+    
     // write the stuff for the wrong/right/timeout messages
     $(".correctAns").text(shuffledQuestions[questIndex].rightAnswer); // push the correct answer to the div
     $(".playerImg").attr("src", shuffledQuestions[questIndex].image);// push the larger picture to the div
@@ -413,13 +440,10 @@ var showTimeout = function() {
         $("#answersDiv").attr("style", "display:none"); // hide answers div
         $("#questionDiv").attr("style", "display:block"); // keep questions div up
         $("#timeoutDiv").attr("style", "display:block"); // show timeoutDiv
-        audio.pause(); // pause the audio if it had been started
+        // audio.pause(); // pause the audio if it had been started
         // create timeout until the jump to the next question:
         setTimeout(gameOverYet,answerTime);
 }
-
-
-
 
 // ------------------------------------------------
 // countDown function for interval
@@ -434,11 +458,9 @@ var countDown = function() {
     }
 }
 
-
 // ------------------------------------------------
 // function "start" for starting (and restarting) the game
 // ------------------------------------------------
-
 
 var start = function() {
 
@@ -512,11 +534,9 @@ var end = function() {
 
 };
 
-
 // ------------------------------------------------
 // call "start" when a .startButton is pressed
 // ------------------------------------------------
-
 
 // watch for the start button click event
 $(document).on("click", ".startButton", function() { // watch for the click from start or restart
@@ -525,16 +545,12 @@ $(document).on("click", ".startButton", function() { // watch for the click from
 
 });
 
-
-
 // ------------------------------------------------
 // Watch for the answer click and execute logic
 // ------------------------------------------------
 
 $(document).on("click", ".answer", function() { // watch for the click
 
-
-    
 
     // increment our question:
     
@@ -568,10 +584,9 @@ $(document).on("click", ".answer", function() { // watch for the click
     setTimeout(gameOverYet,answerTime);
 
     // pause the audio if it had been started
-    audio.pause();
+    // audio.pause();
 
 });
-
 
 // ------------------------------------------------
 // watch for the hint click

@@ -24,7 +24,8 @@ h1 {
 .game {
     min-height: 75vh;
     border: solid 1px #ffffff;
-    background-color:rgb(255, 255, 255, 0.8);
+    background: url("../images/FFFFFF-0.8.png");
+    /* background-color:rgb(255, 255, 255, 0.8); */
 }
 
 .startDiv {
