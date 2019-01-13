@@ -16,7 +16,7 @@
             <div class="row">
 
                 <div class="col-md-2">
-                    <div class="timeDiv text-white text-center" style="display:none">
+                    <div class="timeDiv text-white text-center d-none d-lg-block" style="display:none">
                         <span class="printTimer"></span>
                     </div>
                 </div>
@@ -49,37 +49,40 @@
 
                     <div id="startDiv">
                             <button type="button" class="startButton introStart btn btn-success">Start</button>
+                            <p>You'll be shown a picture of a famous bass player, and four names. Simply select the right name! If you need a little help, click the hint button to hear a clip featuring the musician!</p>
                     </div>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6 p-0 pr-2">
+                            <div class="col-md-6 p-0 pr-2 pl-2">
 
                                 <div id="questionDiv">
                                     <img class="playerImg img-fluid" src="">
                                 </div>
 
                             </div>
-                            <div class="col-md-6 p-0 pl-2"> 
+                            <div class="col-md-6 p-0 pr-2 pl-2"> 
 
                                 <div id="answersDiv">
 
                                 </div>
                     
                                 <div id="wrongDiv" style="display:none">
-                                    <p>Nope! The correct answer was:</p>
+                                    <h3 class="text-danger">Nope!</h3>
+                                    <p>The correct answer was:</p>
                                     <h3><span class="correctAns"></span></h3>
                                     <h3>( <span class="bandName"></span> )</h3>
                                 </div>
                     
                                 <div id="rightDiv" style="display:none">
-                                    <p>Correct!</p>
+                                    <h3 class="text-success">Correct!</h3>
                                     <h3><span class="correctAns"></span></h3>
                                     <h3>( <span class="bandName"></span> )</h3>
                                 </div>
                     
                                 <div id="timeoutDiv" style="display:none">
-                                    <p>Out of Time! The correct answer was: </p>
+                                    <h3 class="text-danger">Out of Time!</h3> 
+                                    <p>The correct answer was:</p>
                                     <h3><span class="correctAns"></span></h3>
                                     <h3>( <span class="bandName"></span> )</h3>
                                 </div>
@@ -93,7 +96,7 @@
                         <p>Correct Answers: <span id="finalCorrect"></span></p>
                         <p>Incorrect Answers: <span id="finalWrong"></span></p>
                         <p>Unanswered: <span id="finalUnanswered"></span></p>
-                        <button type="button" class="startButton">Start Over?</button>
+                        <button type="button" class="startButton btn btn-success">Start Over?</button>
                     </div>
 
                 </div><!-- Close container for questions -->

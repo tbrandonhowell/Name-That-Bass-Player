@@ -11,7 +11,7 @@ body {
 h1 {
     font-family: 'Bungee Shade', cursive;
     text-shadow: 0 0 5px #000000, 0 0 5px #000000, 0 0 10px #000000, 0 0 15px #000000;
-    height: 15vh;
+    min-height: 15vh;
     line-height: 15vh;
 }
 
@@ -24,7 +24,7 @@ h1 {
 .game {
     min-height: 75vh;
     border: solid 1px #ffffff;
-    background-color:rgb(255, 255, 255, 0.6);
+    background-color:rgb(255, 255, 255, 0.8);
 }
 
 .startDiv {
